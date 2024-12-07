@@ -1,0 +1,79 @@
+/* Estilo general para centrar textos */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    --color-principal: #000; /* Texto */
+    --color-fondo: #fff;    /* Fondo */
+    --color-boton: #ddd;    /* Botones */
+    color: var(--color-principal);
+    background-color: var(--color-fondo);
+    font-family: Arial, sans-serif;
+    text-align: center; /* Centra los textos */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilo para el contenedor de fecha y hora */
+#fechaHora {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: var(--color-principal);
+}
+
+/* Centrar el título */
+#titulo {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/* Posicionamiento del botón minimalista */
+#toggleTheme {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    color: var(--color-principal, #000);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Estilos generales para botones */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid var(--color-boton);
+    background-color: var(--color-boton);
+    color: var(--color-principal);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Centrando el contenedor de los textos */
+#contenedorTextos {
+    margin-top: 20px;
+    text-align: center; /* Centra los párrafos generados */
+}
+
+/* Tema oscuro */
+body.dark {
+    --color-principal: #fff;
+    --color-fondo: #121212;
+    --color-boton: #333;
+}
+
+/* Botón más visible en tema oscuro */
+body.dark #toggleTheme {
+    color: var(--color-principal);
+}
+
+
+
