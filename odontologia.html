@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos</title>
+    <style>
+        :root {
+            --background-color: #f0f2f5;
+            --text-color: #333;
+            --card-background: #fff;
+            --border-color: #ddd;
+            --primary-color: #4CAF50;
+            --secondary-color: #008CBA;
+            --completed-color: #d4edda;
+            --completed-border: #28a745;
+            --incomplete-color: #f8d7da;
+            --incomplete-border: #dc3545;
+            --button-color: #6c757d;
+            --button-hover-color: #5a6268;
+        }
+
+        [data-theme="dark"] {
+            --background-color: #181818;
+            --text-color: #f0f0f0;
+            --card-background: #242424;
+            --border-color: #555;
+            --primary-color: #57d785;
+            --secondary-color: #57a7d7;
+            --completed-color: #284b36;
+            --completed-border: #57d785;
+            --incomplete-color: #4b2836;
+            --incomplete-border: #d7577d;
+            --button-color: #444;
+            --button-hover-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary-color);
+        }
+
+        .proyecto {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-background);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .proyecto:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .proyecto h2 {
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+
+        .proyecto p {
+            margin: 5px 0;
+        }
+
+        .tarea {
+            margin: 10px 0 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: var(--card-background);
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tarea.completada {
+            background-color: var(--completed-color);
+            border-left-color: var(--completed-border);
+        }
+
+        .tarea.no-completada {
+            background-color: var(--incomplete-color);
+            border-left-color: var(--incomplete-border);
+        }
+
+        .button-group {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #fff;
+            background-color: var(--button-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>Proyectos</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Cambiar Tema</button>
+    <button onclick="agregarProyecto()">➕ Agregar Proyecto</button>
+    <div id="contenedor-proyectos"></div>
+
+    <script>
+        let proyectos = [];
+
+        // Cargar datos desde base.json
+        fetch('base.json')
+            .then(response => response.json())
+            .then(data => {
+                proyectos = data.proyectos;
+                renderProyectos();
+            })
+            .catch(error => console.error('Error al cargar los datos:', error));
+
+        function renderProyectos() {
+            const contenedor = document.getElementById('contenedor-proyectos');
+            contenedor.innerHTML = '';
+
+            proyectos.forEach((proyecto, index) => {
+                const proyectoDiv = document.createElement('div');
+                proyectoDiv.classList.add('proyecto');
+
+                proyectoDiv.innerHTML = `
+                    <h2>Proyecto: ${proyecto.nombre}</h2>
+                    <p><strong>Descripción:</strong> ${proyecto.descripcion}</p>
+                    <h3>Tareas</h3>
+                    <button onclick="agregarTarea(${index})">➕ Agregar Tarea</button>
+                    <button onclick="eliminarProyecto(${index})">🗑️ Eliminar Proyecto</button>
+                `;
+
+                proyecto.tareas.forEach((tarea, tareaIndex) => {
+                    const tareaDiv = document.createElement('div');
+                    tareaDiv.classList.add('tarea');
+                    tareaDiv.classList.add(tarea.estado_completado ? 'completada' : 'no-completada');
+
+                    tareaDiv.innerHTML = `
+                        <p><strong>Nombre:</strong> ${tarea.nombre}</p>
+                        <p><strong>Descripción:</strong> ${tarea.descripcion}</p>
+                        <p><strong>Estado:</strong> ${tarea.estado_completado ? 'Completado' : 'No completado'}</p>
+                        <p><strong>Fecha límite:</strong> ${tarea.fecha_limite}</p>
+                        <div class="button-group">
+                            <button onclick="eliminarTarea(${index}, ${tareaIndex})">🗑️ Eliminar</button>
+                        </div>
+                    `;
+                    proyectoDiv.appendChild(tareaDiv);
+                });
+
+                contenedor.appendChild(proyectoDiv);
+            });
+        }
+
+        function agregarProyecto() {
+            const nombre = prompt('Ingrese el nombre del proyecto:');
+            const descripcion = prompt('Ingrese la descripción del proyecto:');
+            if (nombre && descripcion) {
+                proyectos.push({ nombre, descripcion, tareas: [] });
+                renderProyectos();
+            }
+        }
+
+        function eliminarProyecto(index) {
+            if (confirm('¿Está seguro de que desea eliminar este proyecto?')) {
+                proyectos.splice(index, 1);
+                renderProyectos();
+            }
+        }
+
+        function agregarTarea(proyectoIndex) {
+            const nombre = prompt('Ingrese el nombre de la tarea:');
+            const descripcion = prompt('Ingrese la descripción de la tarea:');
+            const fecha_limite = prompt('Ingrese la fecha límite (YYYY-MM-DD):');
+            const estado_completado = confirm('¿Está completada la tarea?');
+            if (nombre && descripcion && fecha_limite) {
+                proyectos[proyectoIndex].tareas.push({
+                    nombre,
+                    descripcion,
+                    fecha_limite,
+                    estado_completado
+                });
+                renderProyectos();
+            }
+        }
+
+        function eliminarTarea(proyectoIndex, tareaIndex) {
+            if (confirm('¿Está seguro de que desea eliminar esta tarea?')) {
+                proyectos[proyectoIndex].tareas.splice(tareaIndex, 1);
+                renderProyectos();
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+        }
+
+        document.body.setAttribute('data-theme', 'light');
+    </script>
+</body>
+</html>
