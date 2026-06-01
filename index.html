@@ -1,23 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device.width, initial-scale= 1.0">
-    <title> Página básica </title>
-    <!-- Enlace al archivo CSS externo -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta Cartas Uma Musume</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <h1> Bienvenidos a mi página </h1>
+      <h1>Meta de Cartas - Uma Musume</h1>
+      <p>Guía básica de cartas más usadas y fuertes en el meta actual</p>
     </header>
-    <main>
-        <p> Esta es una pagina sencilla con html y css enlazados. </p>
-        <button>Haga click aquí</button>
-    </main>
+
+    <nav>
+      <a href="#tierlist">Tier List</a>
+      <a href="#support">Support Cards</a>
+      <a href="#tips">Tips</a>
+    </nav>
+
+    <section id="tierlist">
+      <h2>🔥 Tier List de Cartas</h2>
+
+      <div class="card S">
+        <h3>SSR Speed - Kitasan Black</h3>
+        <p>Una de las cartas más fuertes del juego. Ideal para velocidad.</p>
+        <ul>
+          <li>
+            Corner Recovery: Recupera stamina en las curvas, ideal para mantener
+            el ritmo en carreras largas.
+          </li>
+          <li>
+            Straightway Adept: Aumenta la velocidad máxima durante un corto
+            período, perfecto para ataques finales.
+          </li>
+          <li>
+            Lasting Strength: Incrementa la velocidad máxima al final de la
+            carrera si tienes poca stamina, excelente para remontadas.
+          </li>
+          <li>Focus: Mejora la salida y la aceleración.</li>
+          <li>
+            Stamina Recovery: Recupera stamina al usar habilidades, lo que
+            permite mantener un buen ritmo durante toda la carrera.
+          </li>
+          <li>Doding Danger / Strayway (Posicionamiento y adelantamiento).</li>
+        </ul>
+        <img src="KitaSan.jpg" alt="Kitasan Black" width="200" height="200" />
+      </div>
+
+      <div class="card A">
+        <h3>SSR Stamina - Super Creek</h3>
+        <p>
+          Excelente regeneración de stamina para carreras largas por excelencia
+          si tu uma requiere stamina, esta carta es perfecta.
+        </p>
+        <img src="supercrek.png" alt="Super Creek" width="200" height="200" />
+        <ul>
+          <li>
+            Swining Maestro: Considerada la mejor habilidad de recuperación
+            dorada del juego. Se activa de forma muy consistente al tomar una
+            curva de manera eficiente, otorgando un enorme colchón de
+            resistencia equivalente a unos 200 puntos de stamina base.
+          </li>
+          <li>
+            Corner Recovery (Recuperación en Curva): La versión normal (azul)
+            previa a desbloquear Swinging Maestro
+          </li>
+          <li>
+            Hesitant Pace Chasers (Perseguidores Indecisos): Reduce ligeramente
+            la velocidad máxima de los rivales con estilo de carrera Pace Chaser
+            (entresurco) durante la fase tardía de la carrera
+          </li>
+          <li>
+            Ramp Up: Aumenta ligeramente la velocidad punta en el momento exacto
+            en el que Super Creek rebasa a otra competidora a mitad de la
+            carrera.
+          </li>
+          <li>
+            Homestretch Haste: Aumenta la velocidad en el último tramo de la
+            carrera.
+          </li>
+          <li>Firms Condition: Mejora el rendimiento en pista firme</li>
+        </ul>
+      </div>
+
+      <div class="card A">
+        <h3>SSR Power - Vodka</h3>
+        <p>Muy buena para builds de potencia en carreras cortas.</p>
+        <img src="Vodka.jpg" alt="Vodka" width="200" height="200" />
+      </div>
+      <ul>
+        <li>
+          Breath of Fresh Air(Skill dorada): Recupera stamina en una recta y
+          tambien sirve para aguantar mejor hasta el final de la carrea.
+        </li>
+        <li>
+          Nimble Navigator: Mejora ligeramente la capacidad de maniobrar cuando
+          tenes otra corredora bloqueándote durante el sprint final
+        </li>
+        <li>
+          Slick Surge: Aumenta ligeramente la aceleración en la fase final de la
+          carrera para corredoras de late
+        </li>
+        <li>
+          Updrafters: Aumenta ligeramente la capacidad de adelantar cuando vas
+          atrás durante la parte final de una carrera de Mile
+        </li>
+      </ul>
+    </section>
+
+    <div class="card b">
+      <h4>SSR Friend - Rio Kishimoto</h4>
+      <p>
+        Excelente carta de apoyo para builds de friend, con habilidades que
+        mejoran la velocidad y la recuperación de stamina.
+      </p>
+      <img src="Kishimoto.png" alt="Rio Kishimoto" width="200" height="200" />
+    </div>
+
+    <div class="card b">
+      <h5>SSR Friend - Tazuna Hayakawa</h5>
+      <p>
+        Su función principal no es aumentar drásticamente el límite máximo de
+        estadísticas, sino asegurar que las Umamusume sufran menos fallas y
+        mantengan su energía
+      </p>
+      <img src="Tazuna.png" alt="Tazuna Hayakawa" width="200" height="200" />
+    </div>
+
+    <section id="support">
+      <h2>📌 Cartas de soporte recomendadas</h2>
+      <ul>
+        <li>Kitasan Black (Speed)</li>
+        <li>Super Creek (Stamina)</li>
+        <li>Tazuna Hayakawa (Friend)</li>
+      </ul>
+    </section>
+
+    <section id="tips">
+      <h2>💡 Consejos del meta</h2>
+      <p>Equilibra Speed + Stamina dependiendo del tipo de carrera.</p>
+      <p>
+        La mayoria de las veces los jugadores optan por las umas, pero al
+        principio es recomendable sacar las cartas, ya que te serviran mucho
+        para poder subir de nivel a tus umas y mejorar sus stats, ademas de que
+        te daran habilidades que te ayudaran a ganar carreras.
+      </p>
+      <p>No uses solo SSR, algunas SR son muy eficientes.</p>
+    </section>
+
     <footer>
-        <p> 2024 mi pagina web </p>
+      <p>Hecho con HTML y CSS | Guía fan de Uma Musume</p>
     </footer>
-    
-</body>
+  </body>
 </html>
